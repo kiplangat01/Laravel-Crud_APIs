@@ -12,12 +12,18 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $tasks = Task::all();
+    return response()->json(['data' => $tasks]);
 
-        return response()->json([
-            'data' => $data,
-        ]);
     }
+
+    // Retrieve tasks for a specific user
+
+    public function specific(User $user)
+{
+    $tasks = $user->tasks;
+    return response()->json(['data' => $tasks]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -27,12 +33,18 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {   
-        //
+        $task = new Task();
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->user_id = $request->input('user_id');
+        $task->save();
+        return response()->json(['data' => $task]);
     }
 
     /**
@@ -40,7 +52,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return response()->json(['data' => $user]);
+        return response()->json(['data' => $task]);
     }
 
     /**
@@ -56,7 +68,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->user_id = $request->input('user_id');
+        $task->save();
+        return response()->json(['data' => $task]);
     }
 
     /**
@@ -64,6 +80,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+    return response()->json(['message' => 'Task deleted successfully.']);
     }
 }
