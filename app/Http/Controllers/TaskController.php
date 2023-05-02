@@ -12,7 +12,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::all();
+
+        return response()->json([
+            'data' => $data,
+        ]);
     }
 
     /**
@@ -27,7 +31,7 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         //
     }
 
@@ -36,7 +40,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return response()->json(['data' => $user]);
     }
 
     /**
