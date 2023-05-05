@@ -1,23 +1,3 @@
-<template>
-  <div>
-    <form @submit.prevent="submitForm">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" v-model="user.name" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" v-model="user.email" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" v-model="user.password" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-  </div>
-</template>
-
 <script>
 import axios from 'axios';
 
@@ -63,3 +43,32 @@ export default {
   },
 };
 </script>
+
+<style>
+.form-group{
+  padding: 2%;
+}
+</style>
+
+<template>
+  <div>
+    <h3 style="margin-left: 40%;">Add user</h3>
+    <form @submit.prevent="submitForm" style="width: 30%; border: 1px solid black; padding: 30px; margin-top: 3%; border-radius: 20px; margin-left: 30%; ">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" v-model="user.name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" v-model="user.email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" v-model="user.password" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</template>
+
+
